@@ -1,0 +1,37 @@
+## Visual Studio / VS Code / Rider
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Build artifacts
+[Bb]in/
+[Oo]bj/
+dist/
+publish/
+out/
+build/
+
+## Large AI Models (Automatic download via OnnxModelBootstrapper on startup)
+## NOTE: GitHub rejects individual files > 100MB (rmbg-1.4.onnx is ~176MB)
+**/wwwroot/models/*.onnx
+!**/wwwroot/models/.gitkeep
+
+## Test Results & Coverage
+[Tt]est[Rr]esults/
+*.trx
+coverage/
+
+## OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+## Logs & Temp files
+*.log
+logs/
+temp/
+tmp/
