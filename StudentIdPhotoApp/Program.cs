@@ -52,10 +52,14 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error", createScopeForErrors: true);
-    app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+// Only redirect to HTTPS if an HTTPS endpoint is explicitly configured
+if (builder.Configuration["ASPNETCORE_URLS"]?.Contains("https://", StringComparison.OrdinalIgnoreCase) == true)
+{
+    app.UseHttpsRedirection();
+}
+
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAntiforgery();
@@ -64,5 +68,50 @@ app.MapControllers();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
+
+// Automatic browser opening on startup if running interactively on Windows
+if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows)
+    && !args.Contains("--no-browser", StringComparer.OrdinalIgnoreCase)
+    && string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("STUDENT_ID_NO_BROWSER")))
+{
+    app.Lifetime.ApplicationStarted.Register(() =>
+    {
+        Task.Run(async () =>
+        {
+            await Task.Delay(800);
+            var url = "http://localhost:5209";
+            Console.WriteLine();
+            Console.WriteLine("==================================================================");
+            Console.WriteLine(" Student ID Photo Processor (.NET 8)");
+            Console.WriteLine($" Server is running at: {url}");
+            Console.WriteLine(" (To stop the server, press Ctrl+C or close this window)");
+            Console.WriteLine("==================================================================");
+            Console.WriteLine();
+
+            try
+            {
+                var psi = new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = "msedge.exe",
+                    Arguments = $"--app={url} --window-size=1300,900",
+                    UseShellExecute = true
+                };
+                System.Diagnostics.Process.Start(psi);
+            }
+            catch
+            {
+                try
+                {
+                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                    {
+                        FileName = url,
+                        UseShellExecute = true
+                    });
+                }
+                catch { }
+            }
+        });
+    });
+}
 
 app.Run();
