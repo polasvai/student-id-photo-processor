@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentIdPhotoApp.Tests", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentIdPhotoApp.DesktopLauncher", "StudentIdPhotoApp.DesktopLauncher\StudentIdPhotoApp.DesktopLauncher.csproj", "{69405A58-0808-4587-AC51-F0B8C84F2B96}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentIdPhotoApp.SingleExe", "StudentIdPhotoApp.SingleExe\StudentIdPhotoApp.SingleExe.csproj", "{93CD4665-E9C8-4F87-A4D0-52AFBE926B74}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{69405A58-0808-4587-AC51-F0B8C84F2B96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69405A58-0808-4587-AC51-F0B8C84F2B96}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69405A58-0808-4587-AC51-F0B8C84F2B96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93CD4665-E9C8-4F87-A4D0-52AFBE926B74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93CD4665-E9C8-4F87-A4D0-52AFBE926B74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93CD4665-E9C8-4F87-A4D0-52AFBE926B74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93CD4665-E9C8-4F87-A4D0-52AFBE926B74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
